@@ -18,7 +18,7 @@ module HasRoles
         include InstanceMethods
         available_roles.each do |role|
           self.class_eval do
-            define_method "is_#{role}?".to_sym do
+            define_method "#{role}?".to_sym do
               has_role?(role)
             end
           end

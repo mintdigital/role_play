@@ -97,18 +97,18 @@ class HasRolesTest < Test::Unit::TestCase
 
   def test_should_return_true_when_asking_if_is_existing_role
     @roleable_sample.add_role(:sample_role_1)
-    assert_equal(true, @roleable_sample.is_sample_role_1?)
+    assert_equal(true, @roleable_sample.sample_role_1?)
   end
 
   def test_should_return_false_when_asking_if_is_unexisting_role
     @roleable_sample.add_role(:sample_role_1)
-    assert_equal(false, @roleable_sample.is_sample_role_2?)
+    assert_equal(false, @roleable_sample.sample_role_2?)
   end
 
   def test_should_raise_exception_when_asking_if_is_invalid_role
     @roleable_sample.add_role(:sample_role_1)
     assert_raise(NoMethodError) {
-      @roleable_sample.is_invalid_role?
+      @roleable_sample.invalid_role?
     }
   end
 
