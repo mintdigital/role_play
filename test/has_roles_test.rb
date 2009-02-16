@@ -36,6 +36,10 @@ class HasRolesTest < Test::Unit::TestCase
     end
   end
 
+  def test_should_return_true_when_role_added
+    assert @roleable_sample.add_role(:sample_role_1)
+  end
+
   def test_should_not_be_able_to_add_invalid_role_to_roleable
     assert_no_difference "RoleAssignment.count", 1 do
       assert_no_difference "Role.count", 1 do
@@ -43,6 +47,10 @@ class HasRolesTest < Test::Unit::TestCase
       end
     end
     assert_equal(false, @roleable_sample.has_role?(:invalid_role))
+  end
+
+  def test_should_return_false_when_invalid_role_not_added
+    assert !@roleable_sample.add_role(:invalid_role)
   end
 
   def test_should_not_add_role_nor_assignment_if_already_has_role
@@ -53,6 +61,12 @@ class HasRolesTest < Test::Unit::TestCase
       end
     end
     assert_equal(true, @roleable_sample.has_role?(:sample_role_1))
+  end
+
+  def test_should_return_true_if_already_has_role
+    @roleable_sample.add_role(:sample_role_1)
+    assert @roleable_sample.has_role?(:sample_role_1), 'Precondition: has role'
+    assert @roleable_sample.add_role(:sample_role_1)
   end
 
   def test_should_add_assignment_but_not_role_nor_assignment_if_role_exists
@@ -85,6 +99,12 @@ class HasRolesTest < Test::Unit::TestCase
     assert_equal(false, @roleable_sample.has_role?(:sample_role_1))
   end
 
+  def test_should_return_true_when_role_removed
+    @roleable_sample.add_role(:sample_role_1)
+    assert @roleable_sample.has_role?(:sample_role_1), 'Precondition: has role'
+    assert @roleable_sample.remove_role(:sample_role_1)
+  end
+
   def test_should_not_remove_role_assignment_when_removing_other_role
     @roleable_sample.add_role(:sample_role_1)
     assert_no_difference "RoleAssignment.count" do
@@ -93,6 +113,11 @@ class HasRolesTest < Test::Unit::TestCase
       end
     end
     assert_equal(true, @roleable_sample.has_role?(:sample_role_1))
+  end
+
+  def test_should_return_true_when_trying_to_remove_un_had_role
+    assert !@roleable_sample.has_role?(:sample_role_1), 'Precondition: does not have role'
+    assert @roleable_sample.remove_role(:sample_role_1)
   end
 
   def test_should_return_true_when_asking_if_is_existing_role
