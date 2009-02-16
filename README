@@ -1,0 +1,23 @@
+HasRoles
+========
+
+Introduction goes here.
+
+
+Example
+=======
+
+in a model class:
+    has_roles [:first_role, :second_role]
+and run:
+   ./script/generate has_roles create_roles
+
+now in the mode you can use:
+add_role(:first_role)
+remove_role(:second_role)
+can_have_role?(:third_role)
+is_first_role?
+is_second_role?
+
+
+Copyright (c) 2008 [name of plugin creator], released under the MIT license

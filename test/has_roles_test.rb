@@ -1,0 +1,148 @@
+require 'test/unit'
+require '../../../../vendor/rails/activerecord/lib/active_record.rb'
+require '../init.rb' 
+
+ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :dbfile => ":memory:")
+ 
+
+def setup_db
+  ActiveRecord::Schema.define(:version => 1) do
+    create_table :roleable_samples do |t|
+    end
+  end
+  
+  ActiveRecord::Schema.define(:version => 1) do
+    create_table :roles do |t|
+      t.string :name
+    end
+  end
+  
+  ActiveRecord::Schema.define(:version => 1) do
+    create_table :role_assignments do |t|
+      t.integer :roleable_id
+      t.string :roleable_type
+      t.integer :role_id
+    end
+  end
+end
+
+def teardown_db
+  ActiveRecord::Base.connection.tables.each do |table|
+    ActiveRecord::Base.connection.drop_table(table)
+  end
+end
+
+class RoleableSample < ActiveRecord::Base
+  has_roles [:sample_role_1, :sample_role_2]
+end
+
+class HasRolesTest < Test::Unit::TestCase
+ 
+  def setup
+    setup_db
+    @roleable_sample = RoleableSample.create
+  end
+
+  def test_active_record_should_respond_to_has_roles
+    assert ActiveRecord::Base.respond_to?(:has_roles)
+  end
+  
+  def test_roleable_class_should_return_available_roles
+    assert_equal [:sample_role_1, :sample_role_2], RoleableSample.available_roles
+  end
+  
+  def test_roleable_object_can_have_its_class_roles
+    [:sample_role_1, :sample_role_2].each do |role_name|
+      assert_equal(true, @roleable_sample.can_have_role?(role_name))
+    end
+  end
+  
+  def test_should_be_able_to_add_valid_role_to_roleable
+    assert_difference "RoleAssignment.count", 1 do
+      assert_difference "Role.count", 1 do
+        @roleable_sample.add_role(:sample_role_1)
+      end
+    end
+  end
+  
+  def test_should_not_be_able_to_add_invalid_role_to_roleable
+    assert_no_difference "RoleAssignment.count", 1 do
+      assert_no_difference "Role.count", 1 do
+        @roleable_sample.add_role(:invalid_role)
+      end
+    end
+    assert_equal(false, @roleable_sample.has_role?(:invalid_role))
+  end
+  
+  def test_should_not_add_role_nor_assignment_if_already_has_role
+    @roleable_sample.add_role(:sample_role_1)
+    assert_no_difference "RoleAssignment.count" do
+      assert_no_difference "Role.count" do
+        @roleable_sample.add_role(:sample_role_1)
+      end
+    end
+    assert_equal(true, @roleable_sample.has_role?(:sample_role_1))
+  end
+  
+  def test_should_add_assignment_but_not_role_nor_assignment_if_role_exists
+    Role.create(:name => 'sample_role_1')
+    assert_difference "RoleAssignment.count", 1 do
+      assert_no_difference "Role.count" do
+        @roleable_sample.add_role(:sample_role_1)
+      end
+    end
+    assert_equal(true, @roleable_sample.has_role?(:sample_role_1))
+  end
+  
+  def test_should_have_added_role
+    @roleable_sample.add_role(:sample_role_1)
+    assert_equal(true, @roleable_sample.has_role?(:sample_role_1))
+  end
+  
+  def test_should_not_have_not_added_role
+    @roleable_sample.add_role(:sample_role_1)
+    assert_equal(false, @roleable_sample.has_role?(:sample_role_2))
+  end
+  
+  def test_should_remove_role_assignment
+    @roleable_sample.add_role(:sample_role_1)
+    assert_difference "RoleAssignment.count", -1 do
+      assert_no_difference "Role.count" do
+        @roleable_sample.remove_role(:sample_role_1) 
+      end
+    end
+    assert_equal(false, @roleable_sample.has_role?(:sample_role_1))
+  end
+  
+  def test_should_not_remove_role_assignment_when_removing_other_role
+    @roleable_sample.add_role(:sample_role_1)
+    assert_no_difference "RoleAssignment.count" do
+      assert_no_difference "Role.count" do
+        @roleable_sample.remove_role(:sample_role_2) 
+      end
+    end
+    assert_equal(true, @roleable_sample.has_role?(:sample_role_1))
+  end
+  
+  def test_should_return_true_when_asking_if_is_existing_role
+    @roleable_sample.add_role(:sample_role_1)
+    assert_equal(true, @roleable_sample.is_sample_role_1?)
+  end
+  
+  def test_should_return_false_when_asking_if_is_unexisting_role
+    @roleable_sample.add_role(:sample_role_1)
+    assert_equal(false, @roleable_sample.is_sample_role_2?)
+  end
+  
+  def test_should_raise_exception_when_asking_if_is_invalid_role
+    @roleable_sample.add_role(:sample_role_1)
+    assert_raise(NoMethodError) { 
+      @roleable_sample.is_invalid_role?
+    }
+  end
+  
+  def teardown
+    teardown_db
+  end
+
+end

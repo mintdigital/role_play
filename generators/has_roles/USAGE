@@ -1,0 +1,8 @@
+Description:
+    This generates migrations for roles and role_assignments models
+
+Example:
+    ./script/plugin has_roles create_roles
+
+    This will create:
+        roles and role_assignments tables to use the plugin
