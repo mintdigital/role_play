@@ -1,19 +1,19 @@
 # HasRoles
 module HasRoles
-  
+
   def self.included(base)
     base.extend HasMethods
   end
-  
+
   module HasMethods
     def has_roles(roles)
       write_inheritable_attribute(:available_roles, roles)
       class_inheritable_reader :available_roles
-      
+
       unless included_modules.include? InstanceMethods
         has_many :role_assignments, :as => :roleable, :dependent => :destroy
         has_many :roles, :through => :role_assignments
-        
+
         extend ClassMethods
         include InstanceMethods
         available_roles.each do |role|
@@ -26,15 +26,15 @@ module HasRoles
       end
     end
   end
-  
+
   module ClassMethods
   end
-  
+
   module InstanceMethods
     def can_have_role?(role_name)
       available_roles.include?(role_name)
     end
-    
+
     def has_role?(rolename)
       !self.roles.find_by_name(rolename.to_s).nil?
     end
