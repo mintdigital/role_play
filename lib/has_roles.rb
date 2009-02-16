@@ -6,7 +6,8 @@ module HasRoles
   end
 
   module HasMethods
-    def has_roles(roles)
+    def has_roles(*roles)
+      roles.flatten!
       write_inheritable_attribute(:available_roles, roles)
       class_inheritable_reader :available_roles
 

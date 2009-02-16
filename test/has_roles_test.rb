@@ -4,6 +4,10 @@ class RoleableSample < ActiveRecord::Base
   has_roles [:sample_role_1, :sample_role_2]
 end
 
+class AnotherRoleable < ActiveRecord::Base
+  has_roles :another1, :another2
+end
+
 class HasRolesTest < Test::Unit::TestCase
 
   def setup
