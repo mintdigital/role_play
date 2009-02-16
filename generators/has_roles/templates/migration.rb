@@ -5,12 +5,11 @@ class CreateRoles < ActiveRecord::Migration
     end
 
     create_table :role_assignments do |t|
-      t.integer :roleable_id
+      t.integer :roleable_id, :role_id
       t.string :roleable_type
-      t.integer :role_id
     end
   end
-  
+
   def self.down
     drop_table :role_assignments
     drop_table :roles
