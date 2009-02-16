@@ -1,15 +1,24 @@
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
+require 'echoe'
+require File.join(File.dirname(__FILE__), %w[lib/has_roles])
 
-desc 'Default: run unit tests.'
-task :default => :test
+Echoe.new('has_roles') do |a|
+  a.version = HasRoles::Version::STRING
+  a.summary = "Simple roles for ActiveRecord"
+  a.author = "Krzysztof Zylawy"
+  a.email = "krzysztof@mintdigital.com"
+  a.runtime_dependencies = ['activerecord']
+  a.development_dependencies = ['echoe']
+  a.has_rdoc = false
+  a.retain_gemspec = true
+end
 
-desc 'Test the has_roles plugin.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
+desc 'Default: Run Tests'
+Rake::TestTask.new do |t|
+  t.warning = true
   t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
 end
 
 desc 'Generate documentation for the has_roles plugin.'
