@@ -1,5 +1,12 @@
-# HasRoles
 module HasRoles
+
+  module Version
+    MAJOR = 0
+    MINOR = 9
+    TINY  = 9
+
+    STRING = [MAJOR,MINOR,TINY].join('.')
+  end
 
   def self.included(base)
     base.extend HasMethods
