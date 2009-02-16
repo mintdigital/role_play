@@ -7,8 +7,11 @@ end
 class HasRolesTest < Test::Unit::TestCase
  
   def setup
-    setup_db
     @roleable_sample = RoleableSample.create
+  end
+
+  def teardown
+    [Role, RoleAssignment, RoleableSample].each {|klass| klass.delete_all }
   end
 
   def test_active_record_should_respond_to_has_roles
@@ -107,10 +110,6 @@ class HasRolesTest < Test::Unit::TestCase
     assert_raise(NoMethodError) { 
       @roleable_sample.is_invalid_role?
     }
-  end
-  
-  def teardown
-    teardown_db
   end
 
 end
