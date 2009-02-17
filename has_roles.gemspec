@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Krzysztof Zylawy"]
-  s.date = %q{2009-02-16}
+  s.date = %q{2009-02-17}
   s.description = %q{Simple roles for ActiveRecord}
   s.email = %q{krzysztof@mintdigital.com}
   s.extra_rdoc_files = ["lib/has_roles.rb", "lib/role.rb", "lib/role_assignment.rb", "README", "tasks/has_roles_tasks.rake"]
