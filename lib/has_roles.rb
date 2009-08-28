@@ -3,7 +3,7 @@ module HasRoles
   module Version
     MAJOR = 1
     MINOR = 0
-    TINY  = 0
+    TINY  = 1
 
     STRING = [MAJOR,MINOR,TINY].join('.')
   end
@@ -60,5 +60,9 @@ module HasRoles
       role_assignment.destroy if role_assignment
     end
 
+    def clear_roles
+      role_assignments.clear
+    end
+    
   end
 end
