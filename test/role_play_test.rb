@@ -8,7 +8,7 @@ class AnotherRoleable < ActiveRecord::Base
   has_roles :another1, :another2
 end
 
-class HasRolesTest < Test::Unit::TestCase
+class RolePlayTest < Test::Unit::TestCase
 
   def setup
     @roleable_sample = RoleableSample.create

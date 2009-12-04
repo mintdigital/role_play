@@ -1,11 +1,16 @@
 require 'test/unit'
+require 'rubygems'
+require 'active_record'
 require File.join(File.dirname(__FILE__), 'assertions')
-require File.join(File.dirname(__FILE__), %w[.. init.rb])
+require File.join(File.dirname(__FILE__), %w[.. rails init.rb])
+$LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
+require 'role'
+require 'role_assignment'
 
 Test::Unit::TestCase.send :include, ActiveSupport::Testing::Assertions
 
 ActiveRecord::Base.establish_connection(
-  :adapter => 'sqlite3', :dbfile => ':memory:'
+  :adapter => 'sqlite3', :database => ':memory:'
 )
 
 ActiveRecord::Schema.define(:version => 1) do

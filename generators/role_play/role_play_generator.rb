@@ -1,4 +1,4 @@
-class HasRolesGenerator < Rails::Generator::Base
+class RolePlayGenerator < Rails::Generator::Base
   def manifest
     recorded_session = record do |m|
       unless options[:skip_migration]

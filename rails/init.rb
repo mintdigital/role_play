@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), %w[.. lib has_roles])
+require File.join(File.dirname(__FILE__), %w[.. lib role_play])
 
-ActiveRecord::Base.send(:include, HasRoles)
+ActiveRecord::Base.send(:include, RolePlay)
 

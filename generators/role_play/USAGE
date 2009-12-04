@@ -2,6 +2,6 @@ Description:
     This generates migrations for roles and role_assignments models
 
 Example:
-    ./script/generate has_roles && rake db:migrate
+    ./script/generate role_play && rake db:migrate
 
     This will create a migration for the roles and role_assignments tables.
