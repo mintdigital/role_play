@@ -1,11 +1,11 @@
 Install
 =======
-
-    $ gem source -a http://gems.github.com/
-    $ sudo gem install mintdigital-has_roles
+  
+    From gemcutter
+    $ sudo gem install role_play
 
     # environment.rb
-    config.gem 'mintdigital-has_roles', :lib => 'has_roles'
+    config.gem 'role_play'
 
 Example
 =======
@@ -16,7 +16,7 @@ In an ActiveRecord class:
 
 Then run:
 
-    ./script/generate has_roles && rake db:migrate
+    ./script/generate role_play && rake db:migrate
 
 Now your model has these instance methods:
 

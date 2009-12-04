@@ -21,18 +21,18 @@ Gem::Specification.new do |s|
      "README",
      "Rakefile",
      "VERSION",
-     "generators/has_roles/USAGE",
-     "generators/has_roles/has_roles_generator.rb",
-     "generators/has_roles/templates/migration.rb",
-     "has_roles.gemspec",
+     "generators/role_play/USAGE",
+     "generators/role_play/role_play_generator.rb",
+     "generators/role_play/templates/migration.rb",
      "install.rb",
-     "lib/has_roles.rb",
      "lib/role.rb",
      "lib/role_assignment.rb",
+     "lib/role_play.rb",
      "rails/init.rb",
+     "role_play.gemspec",
      "tasks/has_roles_tasks.rake",
      "test/assertions.rb",
-     "test/has_roles_test.rb",
+     "test/role_play_test.rb",
      "test/test_helper.rb",
      "uninstall.rb"
   ]
@@ -43,7 +43,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Simple roles for ActiveRecord}
   s.test_files = [
     "test/assertions.rb",
-     "test/has_roles_test.rb",
+     "test/role_play_test.rb",
      "test/test_helper.rb"
   ]
 
