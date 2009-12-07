@@ -3,29 +3,13 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 require File.join(File.dirname(__FILE__), %w[lib/role_play])
 
-# begin
-#   require 'echoe'
-#   Echoe.new('has_roles') do |a|
-#     a.version = HasRoles::Version::STRING
-#     a.summary = "Simple roles for ActiveRecord"
-#     a.author = "Krzysztof Zylawy"
-#     a.email = "krzysztof@mintdigital.com"
-#     a.runtime_dependencies = ['activerecord']
-#     a.development_dependencies = ['echoe']
-#     a.has_rdoc = false
-#     a.retain_gemspec = true
-#   end
-# rescue LoadError
-#   puts "Install 'echoe' if you want gem building-ness."
-# end
-
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |s|
     s.name = "role_play"
     s.summary = "Simple roles for ActiveRecord"
     s.email = "philnash@gmail.com"
-    s.homepage = "http://github.com/mintdigital/has_roles"
+    s.homepage = "http://github.com/mintdigital/role_play"
     s.authors = ["Krzysztof Zylawy", "Mint Digital"]
     s.add_dependency 'activerecord'
   end
