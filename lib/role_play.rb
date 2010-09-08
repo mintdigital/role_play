@@ -55,6 +55,8 @@ module RolePlay
     def clear_roles
       role_assignments.clear
     end
-    
+
   end
 end
+
+ActiveRecord::Base.send(:include, RolePlay) if defined?(ActiveRecord)
