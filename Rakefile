@@ -8,7 +8,7 @@ begin
   Jeweler::Tasks.new do |s|
     s.name = "role_play"
     s.summary = "Simple roles for ActiveRecord"
-    s.email = "philnash@gmail.com"
+    s.email = "hello@mintdigital.com"
     s.homepage = "http://github.com/mintdigital/role_play"
     s.authors = ["Krzysztof Zylawy", "Mint Digital"]
     s.add_dependency 'activerecord'
