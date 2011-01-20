@@ -1,8 +1,4 @@
-begin
-  require_relative 'test_helper' # for ruby 1.9
-rescue NoMethodError => e
-  require File.join(File.dirname(__FILE__), 'test_helper') # for ruby 1.8 and earlier
-end
+require 'test_helper'
 
 class RoleableSample < ActiveRecord::Base
   has_roles [:sample_role_1, :sample_role_2]
