@@ -1,3 +1,6 @@
+require 'role'
+require 'role_assignment'
+
 module RolePlay
 
   def self.included(base)
