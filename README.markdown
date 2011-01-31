@@ -2,10 +2,10 @@ Install
 =======
   
     From gemcutter
-    $ sudo gem install role_play
+    $ gem install role_play
 
-    # environment.rb
-    config.gem 'role_play'
+    # or in your Gemfile
+    gem 'role_play'
 
 Example
 =======
@@ -16,7 +16,7 @@ In an ActiveRecord class:
 
 Then run:
 
-    ./script/generate role_play && rake db:migrate
+    rails generate role_play_migration && rake db:migrate
 
 Now your model has these instance methods:
 
