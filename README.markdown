@@ -32,4 +32,6 @@ Now your model has these instance methods:
 
 ---
 
+Tested in Ruby 1.9.2 and Rails 3.0.3
+
 Copyright (c) 2008 Krzysztof Zylawy, released under the MIT license
