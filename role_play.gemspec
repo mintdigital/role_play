@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.version = "1.1.2"
+  s.version = "1.1.3"
 
   s.name = 'role_play'
   s.summary = %q{Simple roles for ActiveRecord}
