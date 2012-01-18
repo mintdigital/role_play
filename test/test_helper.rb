@@ -2,6 +2,7 @@
 #require 'rails/generators/test_case'
 require 'test/unit'
 require 'rubygems'
+require 'active_support/core_ext'
 require 'active_record'
 
 ENV['RAILS_ENV'] = 'test'
