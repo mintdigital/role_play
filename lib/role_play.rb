@@ -30,14 +30,13 @@ module RolePlay
     end
 
     def has_role?(rolename)
-      !self.roles.find_by_name(rolename.to_s).nil?
+      self.roles.include?( Role.find_by_name(rolename) )
     end
 
     def add_role rolename
       return false unless can_have_role?(rolename)
       return true if has_role?(rolename)
       self.roles << Role.find_or_create_by_name(rolename.to_s)
-      self.save
     end
 
     def remove_role name

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.version = "1.1.3"
+  s.version = "1.1.4"
 
   s.name = 'role_play'
   s.summary = %q{Simple roles for ActiveRecord}
@@ -14,4 +14,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.platform = Gem::Platform::RUBY
   s.add_dependency('activerecord', '>= 3.0.3')
+  s.add_dependency('railties', '>= 3.0.3')
+  s.add_development_dependency('sqlite3')
 end

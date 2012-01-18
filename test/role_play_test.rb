@@ -140,7 +140,7 @@ class RolePlayTest < ActiveSupport::TestCase
       @roleable_sample.invalid_role?
     }
   end
-  
+
   def test_should_clear_roles
     @roleable_sample.add_role(:sample_role_1)
     assert_difference "RoleAssignment.count", -1 do
