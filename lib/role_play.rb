@@ -37,7 +37,6 @@ module RolePlay
       return false unless can_have_role?(rolename)
       return true if has_role?(rolename)
       self.roles << Role.find_or_create_by_name(rolename.to_s)
-      self.save
     end
 
     def remove_role name
