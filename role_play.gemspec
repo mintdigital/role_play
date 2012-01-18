@@ -14,4 +14,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.platform = Gem::Platform::RUBY
   s.add_dependency('activerecord', '>= 3.0.3')
+  s.add_dependency('railties', '>= 3.0.3')
 end
