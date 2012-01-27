@@ -7,9 +7,8 @@ module RolePlay
 
   module ClassMethods
     def has_roles(*roles)
-      roles.flatten!
-      write_inheritable_attribute(:available_roles, roles)
-      class_inheritable_reader :available_roles
+      class_attribute :available_roles
+      self.available_roles = roles.flatten
 
       has_many :role_assignments, :as => :roleable, :dependent => :destroy
       has_many :roles, :through => :role_assignments
