@@ -1,7 +1,7 @@
 Install
 =======
-  
-    From gemcutter
+
+    # from RubyGems:
     $ gem install role_play
 
     # or in your Gemfile
@@ -32,6 +32,7 @@ Now your model has these instance methods:
 
 ---
 
-Tested in Ruby 1.9.2 and Rails 3.0.3
+Tested in Ruby 1.9 and Rails 3.x on Travis CI:
+<http://travis-ci.org/mintdigital/role_play>
 
-Copyright (c) 2008 Krzysztof Zylawy, released under the MIT license
+Copyright (c) 2008 Mint Digital, released under the MIT license
