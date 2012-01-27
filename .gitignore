@@ -1,2 +1,5 @@
 pkg/*
 .rvmrc
+bin/
+tmp/
+Gemfile.lock

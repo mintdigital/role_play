@@ -13,5 +13,8 @@ Gem::Specification.new do |s|
   s.test_files = `git ls-files -- {test}/*`.split("\n")
   s.require_paths = ["lib"]
   s.platform = Gem::Platform::RUBY
-  s.add_dependency('activerecord', '>= 3.0.3')
+  s.add_dependency('activerecord', '>= 3.0', '< 3.2')
+  s.add_dependency('railties', '>= 3.0', '< 3.2')
+  s.add_development_dependency('rake', '>= 0.8.7')
+  s.add_development_dependency('sqlite3')
 end
