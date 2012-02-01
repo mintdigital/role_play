@@ -29,20 +29,19 @@ module RolePlay
     end
 
     def has_role?(rolename)
-      !self.roles.find_by_name(rolename.to_s).nil?
+      self.roles.map(&:name).include?(rolename.to_s)
     end
 
-    def add_role rolename
+    def add_role(rolename)
       return false unless can_have_role?(rolename)
       return true if has_role?(rolename)
       self.roles << Role.find_or_create_by_name(rolename.to_s)
-      self.save
     end
 
-    def remove_role name
+    def remove_role(name)
       return true if !has_role?(name)
-      role_assignment = self.role_assignments.detect { |x| x.role.name == name.to_s }
-      role_assignment.destroy if role_assignment
+      role = self.roles.detect { |r| r.name == name.to_s }
+      self.roles.delete(role) if role
     end
 
     def clear_roles

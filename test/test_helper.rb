@@ -2,6 +2,7 @@
 #require 'rails/generators/test_case'
 require 'test/unit'
 require 'rubygems'
+require 'active_support/core_ext'
 require 'active_record'
 
 ENV['RAILS_ENV'] = 'test'
@@ -17,6 +18,10 @@ ActiveRecord::Base.establish_connection(
 
 ActiveRecord::Schema.define(:version => 1) do
   create_table :roleable_samples do |t|
+  end
+
+  create_table :validated_roleables do |t|
+    t.string :test_attr
   end
 
   create_table :roles do |t|
