@@ -1,9 +1,10 @@
 require 'role'
 require 'role_assignment'
-require 'active_support/concern'
 
 module RolePlay
-  extend ActiveSupport::Concern
+  def self.included(base)
+    base.extend ClassMethods
+  end
 
   module ClassMethods
     def has_roles(*roles)
@@ -23,31 +24,28 @@ module RolePlay
     end
   end
 
-  module InstanceMethods
-    def can_have_role?(role_name)
-      available_roles.include?(role_name)
-    end
+  def can_have_role?(role_name)
+    available_roles.include?(role_name)
+  end
 
-    def has_role?(rolename)
-      self.roles.map(&:name).include?(rolename.to_s)
-    end
+  def has_role?(rolename)
+    self.roles.map(&:name).include?(rolename.to_s)
+  end
 
-    def add_role(rolename)
-      return false unless can_have_role?(rolename)
-      return true if has_role?(rolename)
-      self.roles << Role.find_or_create_by_name(rolename.to_s)
-    end
+  def add_role(rolename)
+    return false unless can_have_role?(rolename)
+    return true if has_role?(rolename)
+    self.roles << Role.find_or_create_by_name(rolename.to_s)
+  end
 
-    def remove_role(name)
-      return true if !has_role?(name)
-      role = self.roles.detect { |r| r.name == name.to_s }
-      self.roles.delete(role) if role
-    end
+  def remove_role(name)
+    return true if !has_role?(name)
+    role = self.roles.detect { |r| r.name == name.to_s }
+    self.roles.delete(role) if role
+  end
 
-    def clear_roles
-      role_assignments.clear
-    end
-
+  def clear_roles
+    role_assignments.clear
   end
 end
 
