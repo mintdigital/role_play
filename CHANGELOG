@@ -1,4 +1,9 @@
-== 1.2.0
+== 1.2.1 (2012.02.01)
+
+* Remove use of ActiveSupport::Concern.
+* Correct has_role? behavior after add_role on an invalid object.
+
+== 1.2.0 (2011.01.27)
 
 * Use class_attribute to provide Rails 3.1+ support.
 
