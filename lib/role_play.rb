@@ -11,7 +11,7 @@ module RolePlay
       class_attribute :available_roles
       self.available_roles = roles.flatten
 
-      has_many :role_assignments, :as => :roleable, :dependent => :destroy
+      has_many :role_assignments, :as => :roleable, :dependent => :destroy, :inverse_of => :roleable
       has_many :roles, :through => :role_assignments
 
       available_roles.each do |role|
