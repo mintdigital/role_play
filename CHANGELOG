@@ -1,3 +1,8 @@
+== 1.2.2 (2013.03.08)
+
+* Use rdoc/task instead of obsolete rake/rdoctask
+* Fix compatibility with ActiveRecord 3.2.12
+
 == 1.2.1 (2012.02.01)
 
 * Remove use of ActiveSupport::Concern.
