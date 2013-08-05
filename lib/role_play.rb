@@ -35,7 +35,7 @@ module RolePlay
   def add_role(rolename)
     return false unless can_have_role?(rolename)
     return true if has_role?(rolename)
-    self.roles << Role.find_or_create_by_name(rolename.to_s)
+    self.roles << Role.where(:name => rolename.to_s).first_or_create
   end
 
   def remove_role(name)
