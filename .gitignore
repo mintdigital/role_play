@@ -1,5 +1,6 @@
 pkg/*
 .rvmrc
+.DS_Store
 bin/
 tmp/
 Gemfile.lock
