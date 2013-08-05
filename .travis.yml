@@ -1,9 +1,6 @@
 rvm:
-  - 1.9.2
   - 1.9.3
   - 2.0.0
 gemfile:
-  - ci/Gemfile-3.0
-  - ci/Gemfile-3.1
   - ci/Gemfile-3.2
   - ci/Gemfile-4.0
