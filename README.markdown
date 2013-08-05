@@ -35,4 +35,6 @@ Now your model has these instance methods:
 Tested in Ruby 1.9 and Rails 3.x on Travis CI:
 <http://travis-ci.org/mintdigital/role_play>
 
+[![Build Status](https://travis-ci.org/mintdigital/role_play.png)](https://travis-ci.org/mintdigital/role_play)
+
 Copyright (c) 2008 Mint Digital, released under the MIT license
